@@ -2,9 +2,9 @@ clear; clc;
 %..........................................................
 % 1a. Input and Initiatlization
 %..........................................................
-
+syms 'qy';
 %Reading input.txt file
-fileID = fopen('input.txt','r');
+fileID = fopen('input_2.3.txt','r');
 data_input = fscanf(fileID,'%g',[15 Inf]);
 fclose(fileID);
 data_input=data_input.';
@@ -81,10 +81,6 @@ for i = 1:NUMEL
         Rl((m-1)*2+j)=r(j);
         Rl((n-1)*2+j)=r(j+2);
     end
-    fprintf('................................................\n');
-    Kl
-    fprintf('................................................\n');
-    Rl
     Kg=Kg+Kl;
     Rg=Rg+Rl;
 end
@@ -105,19 +101,34 @@ fclose(fileID);
 data_bc=data_bc.';
 
 nbc=data_bc(1,1);    %No of boundary conditions
-no_adof=dof-nbc;
+nadof=dof-nbc;
 for i=2:nbc+1
     activedof(1,(data_bc(i,1)-1)*2+data_bc(i,2))=0;
 end
-Kg_BC=(transpose(activedof)*activedof).*Kg;
-Rg_BC=Rg.*transpose(activedof);
+%Kg_BC=(transpose(activedof)*activedof).*Kg;
+%Rg_BC=Rg.*transpose(activedof);
 
 %..........................................................
 % 4. Solve
 %..........................................................
-Kg_BC=Kg_BC(any(Kg_BC,2),any(Kg_BC,1)) %Dropping Rows that are zeros
-Rg_BC=Rg_BC(any(Rg_BC,2),any(Rg_BC,1)) %Dropping Columns that are zeros
-D_BC=linsolve(Kg_BC,Rg_BC);
+m=1;n=1;
+for i=1:dof
+    if(activedof(1,i))    
+        for j=1:dof
+            if(activedof(1,j))
+                Kg_BC(m,n)=Kg(i,j);
+                n=n+1;
+            end
+        end
+        Rg_BC(m)=Rg(i);
+        m=m+1;
+        n=1;
+    end
+end
+
+Kg_BC
+Rg_BC=transpose(Rg_BC);
+D_BC=linsolve(Kg_BC,Rg_BC)
 j=1;
 for i=1:dof
     if(activedof(1,i)==1)
@@ -127,16 +138,13 @@ for i=1:dof
         D(i)=0;
     end
 end
-D=D.'
+D=D.';
 %..........................................................
 % 5. Postprocessing
 %..........................................................
 
 for i = 1:NUMEL
     fprintf('________________________________________________\n');
-    
-    fprintf('[k] for El-no: %2i and alpha: %6.1f\n',i,alpha(i));
-    fprintf('................................................\n');
     m=el(i,1);n=el(i,2);
     u1=D((m-1)*2+1,1);
     v1=D((m-1)*2+2,1);
@@ -144,4 +152,6 @@ for i = 1:NUMEL
     v2=D((n-1)*2+2,1);
     strain(i,1)=((u2-u1)*cosd(alpha(i))+(v2-v1)*sind(alpha(i))/L(i));
     stress(i,1)=E(i)*strain(i,1);
+    fprintf('El. no. %d:  Stress= %1.3g and Strain= %1.3g \n',i,stress(i,1),strain(i,1));
 end
+fprintf('________________________________________________\n');
