@@ -2,9 +2,9 @@ clear; clc;
 %..........................................................
 % 1a. Input and Initiatlization
 %..........................................................
-syms 'qy';
+
 %Reading input.txt file
-fileID = fopen('input_2.3.txt','r');
+fileID = fopen('input.txt','r');
 data_input = fscanf(fileID,'%g',[15 Inf]);
 fclose(fileID);
 data_input=data_input.';
