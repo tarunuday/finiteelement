@@ -7,9 +7,7 @@ A structural Finite Element Method MATLAB program taking in standard format inpu
 The structure of the input file is as follows
 
   a. There are 15 columns separated by spaces and (No. of Elements + 1) rows.
-
   b. The first two columns of the first row have the number of elements (NEL) and the no of nodes (No_Nodes) followed by thirteen zeros
-
   c. Every row that follows has the following format:
 
    1. Element Number (Elno)
@@ -17,16 +15,16 @@ The structure of the input file is as follows
    3. The bigger node number (j)
    4. x component of the consistent nodal force vector on the first node (Fxi)
    5. y component of the consistent nodal force vector on the first node (Fyi)
-⋅⋅⋅6. Moment on the first node (NOT USED BY THE PROGRAM) (Mi)
-⋅⋅⋅7. x component of the consistent nodal force vector on the second node (Fxj)
-⋅⋅⋅8. y component of the consistent nodal force vector on the second node (Fyj)
-⋅⋅⋅9. Moment on the second node (NOT USED BY THE PROGRAM) (Mj)
-...10. Elastic modulus of the element (E)
-...11. Cross-sectional area of the element (A)
-...12. Moment of Inertia of the bar element (NOT USED BY THE PROGRAM) (I)
-...13. Length of the element (L)
-...14. Height of the element (NOT USED BY THE PROGRAM)(h)
-...15. Orientation of the element (α)
+   6. Moment on the first node (NOT USED BY THE PROGRAM) (Mi)
+   7. x component of the consistent nodal force vector on the second node (Fxj)
+   8. y component of the consistent nodal force vector on the second node (Fyj)
+   9. Moment on the second node (NOT USED BY THE PROGRAM) (Mj)
+   10. Elastic modulus of the element (E)
+   11. Cross-sectional area of the element (A)
+   12. Moment of Inertia of the bar element (NOT USED BY THE PROGRAM) (I)
+   13. Length of the element (L)
+   14. Height of the element (NOT USED BY THE PROGRAM)(h)
+   15. Orientation of the element (α)
 
 ```
 NEL No_Nodes 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -35,7 +33,7 @@ ELno i j Fxi Fyi Mi Fxj Fyj Mj E A I L h α
 …
 ```
 
-2. Prepare the input_geometry.txt file
+## 2. Prepare the input_geometry.txt file
 
 The structure of the input file is as follows
 ```
