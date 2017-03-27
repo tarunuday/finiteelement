@@ -6,17 +6,17 @@ A structural Finite Element Method MATLAB program taking in standard format inpu
 
 The structure of the input file is as follows
 
-⋅⋅a. There are 15 columns separated by spaces and (No. of Elements + 1) rows.
+  a. There are 15 columns separated by spaces and (No. of Elements + 1) rows.
 
-⋅⋅b. The first two columns of the first row have the number of elements (NEL) and the no of nodes (No_Nodes) followed by thirteen zeros
+  b. The first two columns of the first row have the number of elements (NEL) and the no of nodes (No_Nodes) followed by thirteen zeros
 
-⋅⋅c. Every row that follows has the following format:
+  c. Every row that follows has the following format:
 
-⋅⋅⋅1. Element Number (Elno)
-⋅⋅⋅2. The smaller node number (i)
-⋅⋅⋅3. The bigger node number (j)
-⋅⋅⋅4. x component of the consistent nodal force vector on the first node (Fxi)
-⋅⋅⋅5. y component of the consistent nodal force vector on the first node (Fyi)
+   1. Element Number (Elno)
+   2. The smaller node number (i)
+   3. The bigger node number (j)
+   4. x component of the consistent nodal force vector on the first node (Fxi)
+   5. y component of the consistent nodal force vector on the first node (Fyi)
 ⋅⋅⋅6. Moment on the first node (NOT USED BY THE PROGRAM) (Mi)
 ⋅⋅⋅7. x component of the consistent nodal force vector on the second node (Fxj)
 ⋅⋅⋅8. y component of the consistent nodal force vector on the second node (Fyj)
