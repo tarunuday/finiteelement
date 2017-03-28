@@ -63,7 +63,7 @@ Elno i j xi yi xj yj
 …
 ```
 
-## 3: Prepare the boundary_conditions.txt file
+## 3. Prepare the boundary_conditions.txt file
 
 The structure of the input file is as follows:
 
@@ -82,3 +82,7 @@ NBC 0 0
 Node BC_dof BC_magnitude
 … … …
 ```
+
+## 4. Run the program in MATLAB
+
+Make sure all the txt files are in the same folder as the `fem.m` file and run the `fem.m` matlab program
